@@ -3,6 +3,8 @@ package com.example.calculator_tate_moffo;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -10,6 +12,8 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     // declare global variables
+    private String TAG = "MainActivity";
+
     private Button button_C;
     private Button button_CE;
     private Button button_sign;
@@ -53,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         button_C.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                result.setText("0");
             }
         });
 
@@ -62,7 +66,12 @@ public class MainActivity extends AppCompatActivity {
         button_CE.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                String temp = result.getText().toString();
+                temp = temp.substring(0, temp.length() - 1);
+                if (temp.length() == 0) {
+                    temp = "0";
+                }
+                result.setText(temp);
             }
         });
 
@@ -71,7 +80,35 @@ public class MainActivity extends AppCompatActivity {
         button_sign.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String temp = result.getText().toString();
 
+                String[] currentMath = TextUtils.split(temp, " ");
+                String currentOp = currentMath[currentMath.length - 1];
+
+                // handles if operation is already negative
+                if (currentOp.startsWith("-")) {
+                    currentOp = currentOp.substring(1, currentOp.length() - 1);
+                    currentMath[currentMath.length - 1] = currentOp;
+
+                    temp = "";
+                    for (int i = 0; i < currentMath.length - 1; i++) {
+                        temp += currentMath[i] + " ";
+                    }
+
+                    result.setText(temp);
+                }
+                // handles if operation is positive
+                else {
+                    currentOp = "-" + currentOp;
+                    currentMath[currentMath.length - 1] = currentOp;
+
+                    temp = "";
+                    for (int i = 0; i < currentMath.length - 1; i++) {
+                        temp += currentMath[i] + " ";
+                    }
+
+                    result.setText(temp);
+                }
             }
         });
 
@@ -91,7 +128,14 @@ public class MainActivity extends AppCompatActivity {
         button_7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                String temp = result.getText().toString();
+                if (temp.equals("0")) {
+                    temp = "7";
+                }
+                else {
+                    temp = temp + "7";
+                }
+                result.setText(temp);
             }
         });
 
@@ -100,7 +144,14 @@ public class MainActivity extends AppCompatActivity {
         button_8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                String temp = result.getText().toString();
+                if (temp.equals("0")) {
+                    temp = "8";
+                }
+                else {
+                    temp = temp + "8";
+                }
+                result.setText(temp);
             }
         });
 
@@ -109,7 +160,14 @@ public class MainActivity extends AppCompatActivity {
         button_9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                String temp = result.getText().toString();
+                if (temp.equals("0")) {
+                    temp = "9";
+                }
+                else {
+                    temp = temp + "9";
+                }
+                result.setText(temp);
             }
         });
 
@@ -129,7 +187,14 @@ public class MainActivity extends AppCompatActivity {
         button_4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                String temp = result.getText().toString();
+                if (temp.equals("0")) {
+                    temp = "4";
+                }
+                else {
+                    temp = temp + "4";
+                }
+                result.setText(temp);
             }
         });
 
@@ -138,7 +203,14 @@ public class MainActivity extends AppCompatActivity {
         button_5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                String temp = result.getText().toString();
+                if (temp.equals("0")) {
+                    temp = "5";
+                }
+                else {
+                    temp = temp + "5";
+                }
+                result.setText(temp);
             }
         });
 
@@ -147,7 +219,14 @@ public class MainActivity extends AppCompatActivity {
         button_6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                String temp = result.getText().toString();
+                if (temp.equals("0")) {
+                    temp = "6";
+                }
+                else {
+                    temp = temp + "6";
+                }
+                result.setText(temp);
             }
         });
 
@@ -167,7 +246,14 @@ public class MainActivity extends AppCompatActivity {
         button_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                String temp = result.getText().toString();
+                if (temp.equals("0")) {
+                    temp = "1";
+                }
+                else {
+                    temp = temp + "1";
+                }
+                result.setText(temp);
             }
         });
 
@@ -176,7 +262,14 @@ public class MainActivity extends AppCompatActivity {
         button_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                String temp = result.getText().toString();
+                if (temp.equals("0")) {
+                    temp = "2";
+                }
+                else {
+                    temp = temp + "2";
+                }
+                result.setText(temp);
             }
         });
 
@@ -185,7 +278,14 @@ public class MainActivity extends AppCompatActivity {
         button_3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                String temp = result.getText().toString();
+                if (temp.equals("0")) {
+                    temp = "3";
+                }
+                else {
+                    temp = temp + "3";
+                }
+                result.setText(temp);
             }
         });
 
@@ -205,7 +305,11 @@ public class MainActivity extends AppCompatActivity {
         button_0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                String temp = result.getText().toString();
+                if (!temp.equals("0")) {
+                    temp = temp + "0";
+                }
+                result.setText(temp);
             }
         });
 
@@ -214,7 +318,12 @@ public class MainActivity extends AppCompatActivity {
         button_decimal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String temp = result.getText().toString();
 
+                if (!temp.contains(".")) {
+                    temp = temp + ".";
+                    result.setText(temp);
+                }
             }
         });
 
@@ -226,5 +335,43 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    // ...
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.i(TAG, "Entering onStart");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.i(TAG, "Entering onResume");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.i(TAG, "Entering onPause");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.i(TAG, "Entering onStop");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.i(TAG, "Entering onRestart");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.i(TAG, "Entering onDestroy");
     }
 }

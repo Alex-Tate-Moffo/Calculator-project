@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Calculator: Tate-Moffo</string>
 
-    <string name="text_mathResult">AHHHH</string>
+    <string name="text_mathResult">0</string>
 
     <string name="text_C">C</string>
     <string name="text_CE">CE</string>
